@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Thought from './Thought';
+import ThoughtForm from './ThoughtForm';
+import { generateId, getNewExpirationTime } from './utilities';
+import './styles.css';
 
 function App() {
+  const [thoughts, setThoughts] = useState([]);
+  const addThought = (thought) => {
+    setThoughts((prev) => [thought, ...prev]);
+  };
+
+  const removeThought = (thoughtIdToRemove) => {
+    setThoughts((prev) => {
+      return prev.filter((item) => item.id !== thoughtIdToRemove);
+    });
+  };
+
+  const [warning, setWarning] = useState('');
+
+  const nearTime = (time) => {
+    setWarning(time + ' sec');
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>To-do List</h1>
       </header>
+      <span>{warning}</span>
+      <main>
+        <ThoughtForm addThought={addThought} />
+        <ul className="thoughts">
+          {thoughts.map((thought) => (
+            <Thought
+              key={thought.id}
+              thought={thought}
+              removeThought={removeThought}
+              nearTime={nearTime}
+            />
+          ))}
+        </ul>
+      </main>
     </div>
   );
 }
