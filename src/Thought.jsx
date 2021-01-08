@@ -1,23 +1,30 @@
 import React from 'react';
 
 const Thought = (props) => {
-  const { thought, removeThought } = props;
+  const { thoughts, removeThought } = props;
 
-  const handleRemoveClick = (e) => {
-    removeThought(thought);
+  const handleRemoveClick = ({ target }) => {
+    removeThought(target.value);
   };
 
   return (
-    <li className="Thought">
-      <button
-        aria-label="Remove thought"
-        className="remove-button"
-        onClick={handleRemoveClick}
-      >
-        &times;
-      </button>
-      <div className="text">{thought}</div>
-    </li>
+    <ul className="thoughts">
+      {thoughts.map((thought, index) => {
+        return (
+          <li key={index} className="Thought">
+            <button
+              value={thought}
+              aria-label="Remove thought"
+              className="remove-button"
+              onClick={handleRemoveClick}
+            >
+              &times;
+            </button>
+            <div className="text">{thought}</div>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 

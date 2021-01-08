@@ -23,16 +23,7 @@ function App() {
       </header>
       <main>
         <ThoughtForm addThought={addThought} />
-        <ul className="thoughts">
-          {thoughts.map((thought, index) => (
-            <Thought
-              key={index}
-              thought={thought}
-              id={index}
-              removeThought={removeThought}
-            />
-          ))}
-        </ul>
+        <Thought thoughts={thoughts} removeThought={removeThought} />
       </main>
     </div>
   );
