@@ -1,11 +1,10 @@
 import React from 'react';
 
 const Thought = (props) => {
-  const { thought, removeThought, nearTime } = props;
+  const { thought, removeThought } = props;
 
   const handleRemoveClick = (e) => {
-    e.preventDefault();
-    removeThought(thought.id);
+    removeThought(thought);
   };
 
   return (
@@ -17,7 +16,7 @@ const Thought = (props) => {
       >
         &times;
       </button>
-      <div className="text">{thought.text}</div>
+      <div className="text">{thought}</div>
     </li>
   );
 };

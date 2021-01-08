@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { generateId, getNewExpirationTime } from './utilities';
 
 const ThoughtForm = (props) => {
   const [text, setText] = useState('');
@@ -10,12 +9,7 @@ const ThoughtForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let thought = {
-      id: generateId(),
-      text,
-      expiresAt: getNewExpirationTime(),
-    };
-    text && props.addThought(thought);
+    text && props.addThought(text);
     setText('');
   };
 

@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
 import Thought from './Thought';
 import ThoughtForm from './ThoughtForm';
-import { generateId, getNewExpirationTime } from './utilities';
 import './styles.css';
 
 function App() {
   const [thoughts, setThoughts] = useState([]);
-  const addThought = (thought) => {
-    setThoughts((prev) => [thought, ...prev]);
+
+  const addThought = (text) => {
+    setThoughts((prev) => [text, ...prev]);
   };
 
-  const removeThought = (thoughtIdToRemove) => {
+  const removeThought = (thought) => {
     setThoughts((prev) => {
-      return prev.filter((item) => item.id !== thoughtIdToRemove);
+      return prev.filter((item) => item !== thought);
     });
-  };
-
-  const [warning, setWarning] = useState('');
-
-  const nearTime = (time) => {
-    setWarning(time + ' sec');
   };
 
   return (
@@ -27,16 +21,15 @@ function App() {
       <header>
         <h1>To-do List</h1>
       </header>
-      <span>{warning}</span>
       <main>
         <ThoughtForm addThought={addThought} />
         <ul className="thoughts">
-          {thoughts.map((thought) => (
+          {thoughts.map((thought, index) => (
             <Thought
-              key={thought.id}
+              key={index}
               thought={thought}
+              id={index}
               removeThought={removeThought}
-              nearTime={nearTime}
             />
           ))}
         </ul>
