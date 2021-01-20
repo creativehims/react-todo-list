@@ -3,8 +3,8 @@ import React from 'react';
 const Thought = (props) => {
   const { thoughts, removeThought } = props;
 
-  const handleRemoveClick = ({ target }) => {
-    removeThought(target.value);
+  const handleRemoveClick = (index) => {
+    removeThought(index);
   };
 
   return (
@@ -16,7 +16,7 @@ const Thought = (props) => {
               value={thought}
               aria-label="Remove thought"
               className="remove-button"
-              onClick={handleRemoveClick}
+              onClick={() => handleRemoveClick(index)}
             >
               &times;
             </button>
