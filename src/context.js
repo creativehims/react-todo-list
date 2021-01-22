@@ -25,7 +25,6 @@ const AppProvider = ({ children }) => {
 
   const editThought = (idToEdit) => {
     const listItem = thoughts.find((item) => item.id === idToEdit);
-    console.log(listItem);
     setThought(listItem.title);
     setIsEditing(true);
     setEditId(idToEdit);
