@@ -4,4 +4,5 @@ A modified version of "Passing Thoughts" project from Codeacademy's Front End tr
 
 ### Features
 
-1. local storage support - you can refresh the page and items will remain saved.
+1. Local storage support - you can refresh the page and items will remain saved.
+2. Edit the items in the list.

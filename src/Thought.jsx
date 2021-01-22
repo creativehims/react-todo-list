@@ -1,11 +1,8 @@
 import React from 'react';
+import { useGlobalContext } from './context';
 
-const Thought = (props) => {
-  const { thoughts, removeThought } = props;
-
-  const handleRemoveClick = (index) => {
-    removeThought(index);
-  };
+const Thought = () => {
+  const { thoughts, removeThought, editThought } = useGlobalContext();
 
   return (
     <ul className="thoughts">
@@ -13,14 +10,20 @@ const Thought = (props) => {
         return (
           <li key={index} className="Thought">
             <button
-              value={thought}
               aria-label="Remove thought"
               className="remove-button"
-              onClick={() => handleRemoveClick(index)}
+              onClick={() => removeThought(thought.id)}
             >
               &times;
             </button>
-            <div className="text">{thought}</div>
+            <button
+              aria-label="Remove thought"
+              className="remove-button"
+              onClick={() => editThought(thought.id)}
+            >
+              &#x0003C;
+            </button>
+            <div className="text">{thought.title}</div>
           </li>
         );
       })}
